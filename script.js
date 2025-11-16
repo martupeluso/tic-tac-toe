@@ -17,5 +17,12 @@ const gameboard = (function () {
   };
 })();
 
+const Player = function (name, marker) {
+  const getName = () => name;
+  const getMarker = () => marker;
+
+  return { getName, getMarker };
+};
+
 console.log(gameboard.board); // undefined!
 console.log(gameboard.getBoard());
