@@ -24,5 +24,7 @@ const Player = function (name, marker) {
   return { getName, getMarker };
 };
 
-console.log(gameboard.board); // undefined!
-console.log(gameboard.getBoard());
+const gameController = (function () {
+  const playerOne = Player("playerOne", "X");
+  const playerTwo = Player("playerTwo", "O");
+})();
