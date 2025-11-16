@@ -27,4 +27,12 @@ const Player = function (name, marker) {
 const gameController = (function () {
   const playerOne = Player("playerOne", "X");
   const playerTwo = Player("playerTwo", "O");
+
+  let currentPlayer = playerOne;
+
+  const getCurrentPlayer = () => currentPlayer;
+
+  return {
+    getCurrentPlayer,
+  };
 })();
