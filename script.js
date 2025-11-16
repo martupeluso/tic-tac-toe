@@ -10,9 +10,12 @@ const gameboard = (function () {
     }
   }
 
+  const getBoard = () => board;
+
   return {
-    board,
+    getBoard,
   };
 })();
 
-console.log(gameboard.board);
+console.log(gameboard.board); // undefined!
+console.log(gameboard.getBoard());
