@@ -37,7 +37,17 @@ const gameController = (function () {
 
   const getCurrentPlayer = () => currentPlayer;
 
+  const switchPlayerTurn = () => {
+    currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+  };
+
+  const playRound = (row, column) => {
+    gameboard.placeMarker(row, column, currentPlayer.getMarker());
+    switchPlayerTurn();
+  };
+
   return {
     getCurrentPlayer,
+    playRound,
   };
 })();
