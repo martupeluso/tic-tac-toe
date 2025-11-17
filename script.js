@@ -10,15 +10,26 @@ const gameboard = (function () {
     }
   }
 
+  let markerWasPlaced = false;
+
   const placeMarker = (row, column, marker) => {
-    board[row][column] = marker;
+    selectedSpace = board[row][column];
+    if (selectedSpace === 0){
+      board[row][column] = marker;
+      markerWasPlaced = true;
+    } else {
+      markerWasPlaced = false;
+    };
   };
+
+  const getMarkerStatus = () => markerWasPlaced;
 
   const getBoard = () => board;
 
   return {
     getBoard,
     placeMarker,
+    getMarkerStatus
   };
 })();
 
@@ -43,7 +54,9 @@ const gameController = (function () {
 
   const playRound = (row, column) => {
     gameboard.placeMarker(row, column, currentPlayer.getMarker());
-    switchPlayerTurn();
+    if (gameboard.getMarkerStatus() === true){
+      switchPlayerTurn();
+    };
   };
 
   return {
