@@ -10,10 +10,15 @@ const gameboard = (function () {
     }
   }
 
+  const placeMarker = (row, column, marker) => {
+    board[row][column] = marker;
+  };
+
   const getBoard = () => board;
 
   return {
     getBoard,
+    placeMarker,
   };
 })();
 
