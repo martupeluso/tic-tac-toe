@@ -14,12 +14,12 @@ const gameboard = (function () {
 
   const placeMarker = (row, column, marker) => {
     selectedSpace = board[row][column];
-    if (selectedSpace === 0){
+    if (selectedSpace === 0) {
       board[row][column] = marker;
       markerWasPlaced = true;
     } else {
       markerWasPlaced = false;
-    };
+    }
   };
 
   const getMarkerStatus = () => markerWasPlaced;
@@ -29,7 +29,7 @@ const gameboard = (function () {
   return {
     getBoard,
     placeMarker,
-    getMarkerStatus
+    getMarkerStatus,
   };
 })();
 
@@ -54,13 +54,39 @@ const gameController = (function () {
 
   const playRound = (row, column) => {
     gameboard.placeMarker(row, column, currentPlayer.getMarker());
-    if (gameboard.getMarkerStatus() === true){
+    if (gameboard.getMarkerStatus() === true) {
+      checkForWinner();
       switchPlayerTurn();
-    };
+    }
+  };
+
+  const checkForWinner = () => {
+    const board = gameboard.getBoard();
+
+    let winnerFound = false;
+
+    const isAPlayerMark = (mark) => mark === "X" || mark === "O";
+
+    // horizontal check
+
+    for (let row of board) {
+      if (row.every(isAPlayerMark)) {
+        if (
+          row.every((mark) => mark === "X") ||
+          row.every((mark) => mark === "O")
+        ) {
+          console.log(
+            row.every((mark) => mark === "X") ? "X wins!" : "O wins!"
+          );
+          winnerFound = true;
+        }
+      }
+    }
   };
 
   return {
     getCurrentPlayer,
     playRound,
+    checkForWinner,
   };
 })();
