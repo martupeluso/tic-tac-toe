@@ -87,6 +87,5 @@ const gameController = (function () {
   return {
     getCurrentPlayer,
     playRound,
-    checkForWinner,
   };
 })();
