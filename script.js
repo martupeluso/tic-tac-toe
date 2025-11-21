@@ -14,7 +14,7 @@ const gameboard = (function () {
 
   const placeMarker = (row, column, marker) => {
     selectedSpace = board[row][column];
-    if (selectedSpace === 0) {
+    if (selectedSpace === "") {
       board[row][column] = marker;
       markerWasPlaced = true;
     } else {
