@@ -70,16 +70,12 @@ const gameController = (function () {
     // horizontal check
 
     for (let row of board) {
-      if (row.every(isAPlayerMark)) {
-        if (
-          row.every((mark) => mark === "X") ||
-          row.every((mark) => mark === "O")
-        ) {
-          console.log(
-            row.every((mark) => mark === "X") ? "X wins!" : "O wins!"
-          );
-          winnerFound = true;
-        }
+      if (
+        row.every(isAPlayerMark) &&
+        (row.every((mark) => mark === "X") || row.every((mark) => mark === "O"))
+      ) {
+        console.log(row.every((mark) => mark === "X") ? "X wins!" : "O wins!");
+        winnerFound = true;
       }
     }
   };
