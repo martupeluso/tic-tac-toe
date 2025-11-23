@@ -65,21 +65,16 @@ const gameController = (function () {
 
     let winnerFound = false;
 
-    const isAPlayerMark = (mark) => mark === "X" || mark === "O";
+    const checkForSamePlayerMarks = (array) =>
+      array.every((mark) => mark === "X") ||
+      array.every((mark) => mark === "O");
 
     // horizontal check
 
     for (let row of board) {
-      if (row.every(isAPlayerMark)) {
-        if (
-          row.every((mark) => mark === "X") ||
-          row.every((mark) => mark === "O")
-        ) {
-          console.log(
-            row.every((mark) => mark === "X") ? "X wins!" : "O wins!"
-          );
-          winnerFound = true;
-        }
+      if (checkForSamePlayerMarks(row)) {
+        console.log(row.every((mark) => mark === "X") ? "X wins!" : "O wins!");
+        winnerFound = true;
       }
     }
   };
