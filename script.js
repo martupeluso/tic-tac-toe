@@ -73,7 +73,7 @@ const gameController = (function () {
 
     for (let row of board) {
       if (checkForSamePlayerMarks(row)) {
-        console.log(row.every((mark) => mark === "X") ? "X wins!" : "O wins!");
+        console.log(`${currentPlayer.getName()} wins!`);
         winnerFound = true;
       }
     }
