@@ -57,6 +57,7 @@ const gameController = (function () {
     if (gameboard.getMarkerStatus() === true) {
       checkForWinner();
       switchPlayerTurn();
+      console.log(gameboard.getBoard());
     }
   };
 
