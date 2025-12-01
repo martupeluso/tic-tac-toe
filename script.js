@@ -70,13 +70,28 @@ const gameController = (function () {
       array.every((mark) => mark === "X") ||
       array.every((mark) => mark === "O");
 
-    // horizontal check
+    let column1 = [];
+    let column2 = [];
+    let column3 = [];
 
     for (let row of board) {
+      column1.push(row[0]);
+      column2.push(row[1]);
+      column3.push(row[2]);
+
       if (checkForSamePlayerMarks(row)) {
         console.log(`${currentPlayer.getName()} wins!`);
         winnerFound = true;
       }
+    }
+
+    if (
+      checkForSamePlayerMarks(column1) ||
+      checkForSamePlayerMarks(column2) ||
+      checkForSamePlayerMarks(column3)
+    ) {
+      console.log(`${currentPlayer.getName()} wins!`);
+      winnerFound = true;
     }
   };
 
