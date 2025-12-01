@@ -93,6 +93,23 @@ const gameController = (function () {
       console.log(`${currentPlayer.getName()} wins!`);
       winnerFound = true;
     }
+
+    let topLeftCorner = board[0][0];
+    let topRightCorner = board[0][2];
+    let center = board[1][1];
+    let bottomLeftCorner = board[2][0];
+    let bottomRightCorner = board[2][2];
+
+    let diagonal1 = [topLeftCorner, center, bottomRightCorner];
+    let diagonal2 = [topRightCorner, center, bottomLeftCorner];
+
+    if (
+      checkForSamePlayerMarks(diagonal1) ||
+      checkForSamePlayerMarks(diagonal2)
+    ) {
+      console.log(`${currentPlayer.getName()} wins!`);
+      winnerFound = true;
+    }
   };
 
   return {
