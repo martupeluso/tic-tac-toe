@@ -1,7 +1,7 @@
 const gameboard = (function () {
   const rows = 3;
   const columns = 3;
-  const board = [];
+  let board = [];
 
   for (let i = 0; i < rows; i++) {
     board[i] = [];
@@ -26,10 +26,22 @@ const gameboard = (function () {
 
   const getBoard = () => board;
 
+  const cleanBoard = () => {
+    board = [];
+
+    for (let i = 0; i < rows; i++) {
+      board[i] = [];
+      for (let j = 0; j < columns; j++) {
+        board[i].push("");
+      }
+    }
+  };
+
   return {
     getBoard,
     placeMarker,
     getMarkerStatus,
+    cleanBoard,
   };
 })();
 
@@ -118,8 +130,16 @@ const gameController = (function () {
     }
   };
 
+  const restartGame = () => {
+    currentPlayer = playerOne;
+    winnerFound = false;
+    gameboard.cleanBoard();
+    console.log("Game was restarted");
+  };
+
   return {
     getCurrentPlayer,
     playRound,
+    restartGame,
   };
 })();
