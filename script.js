@@ -52,6 +52,8 @@ const gameController = (function () {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   };
 
+  let winnerFound = false;
+
   const playRound = (row, column) => {
     gameboard.placeMarker(row, column, currentPlayer.getMarker());
     if (gameboard.getMarkerStatus() === true) {
@@ -63,8 +65,6 @@ const gameController = (function () {
 
   const checkForWinner = () => {
     const board = gameboard.getBoard();
-
-    let winnerFound = false;
 
     const checkForSamePlayerMarks = (array) =>
       array.every((mark) => mark === "X") ||
