@@ -3,12 +3,16 @@ const gameboard = (function () {
   const columns = 3;
   let board = [];
 
-  for (let i = 0; i < rows; i++) {
-    board[i] = [];
-    for (let j = 0; j < columns; j++) {
-      board[i].push("");
+  const createNewBoard = () => {
+    for (let i = 0; i < rows; i++) {
+      board[i] = [];
+      for (let j = 0; j < columns; j++) {
+        board[i].push("");
+      }
     }
-  }
+  };
+
+  createNewBoard();
 
   let markerWasPlaced = false;
 
@@ -26,22 +30,11 @@ const gameboard = (function () {
 
   const getBoard = () => board;
 
-  const cleanBoard = () => {
-    board = [];
-
-    for (let i = 0; i < rows; i++) {
-      board[i] = [];
-      for (let j = 0; j < columns; j++) {
-        board[i].push("");
-      }
-    }
-  };
-
   return {
+    createNewBoard,
     getBoard,
     placeMarker,
     getMarkerStatus,
-    cleanBoard,
   };
 })();
 
@@ -133,7 +126,7 @@ const gameController = (function () {
   const restartGame = () => {
     currentPlayer = playerOne;
     winnerFound = false;
-    gameboard.cleanBoard();
+    gameboard.createNewBoard();
     console.log("Game was restarted");
   };
 
