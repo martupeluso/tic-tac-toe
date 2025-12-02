@@ -55,11 +55,17 @@ const gameController = (function () {
   let winnerFound = false;
 
   const playRound = (row, column) => {
-    gameboard.placeMarker(row, column, currentPlayer.getMarker());
-    if (gameboard.getMarkerStatus() === true) {
-      checkForWinner();
-      switchPlayerTurn();
-      console.log(gameboard.getBoard());
+    if (winnerFound) {
+      console.log(
+        "There's a winner already! Game's over until you choose to restart it"
+      );
+    } else {
+      gameboard.placeMarker(row, column, currentPlayer.getMarker());
+      if (gameboard.getMarkerStatus() === true) {
+        checkForWinner();
+        switchPlayerTurn();
+        console.log(gameboard.getBoard());
+      }
     }
   };
 
