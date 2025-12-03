@@ -58,12 +58,15 @@ const gameController = (function () {
   };
 
   let winnerFound = false;
+  let tie = false;
 
   const playRound = (row, column) => {
     if (winnerFound) {
       console.log(
         "There's a winner already! Game's over until you choose to restart it"
       );
+    } else if (tie) {
+      console.log("There's a tie! Game's over until you choose to restart it");
     } else {
       gameboard.placeMarker(row, column, currentPlayer.getMarker());
       if (gameboard.getMarkerStatus() === true) {
@@ -85,6 +88,8 @@ const gameController = (function () {
     let column2 = [];
     let column3 = [];
 
+    let fullRows = 0;
+
     for (let row of board) {
       column1.push(row[0]);
       column2.push(row[1]);
@@ -93,6 +98,10 @@ const gameController = (function () {
       if (checkForSamePlayerMarks(row)) {
         console.log(`${currentPlayer.getName()} wins!`);
         winnerFound = true;
+      }
+
+      if (row.every((mark) => mark !== "")) {
+        fullRows++;
       }
     }
 
@@ -121,11 +130,17 @@ const gameController = (function () {
       console.log(`${currentPlayer.getName()} wins!`);
       winnerFound = true;
     }
+
+    if (fullRows === 3 && !winnerFound) {
+      console.log("It's a tie!");
+      tie = true;
+    }
   };
 
   const restartGame = () => {
     currentPlayer = playerOne;
     winnerFound = false;
+    tie = false;
     gameboard.createNewBoard();
     console.log("Game was restarted");
   };
