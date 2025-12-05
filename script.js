@@ -72,6 +72,7 @@ const gameController = (function () {
       if (gameboard.getMarkerStatus() === true) {
         checkForWinner();
         switchPlayerTurn();
+        displayController.showBoard();
         console.log(gameboard.getBoard());
       }
     }
@@ -150,5 +151,35 @@ const gameController = (function () {
     getCurrentPlayer,
     playRound,
     restartGame,
+  };
+})();
+
+const displayController = (function () {
+  const showBoard = () => {
+    const board = gameboard.getBoard();
+    const boardDisplay = document.querySelector(".board");
+
+    boardDisplay.textContent = "";
+
+    for (let row of board) {
+      const boardRow = document.createElement("div");
+      boardRow.classList.add("boardRow");
+
+      for (let cell of row) {
+        const boardCell = document.createElement("div");
+        boardCell.classList.add("boardCell");
+        boardCell.textContent = cell;
+
+        boardRow.append(boardCell);
+      }
+
+      boardDisplay.append(boardRow);
+    }
+  };
+
+  showBoard();
+
+  return {
+    showBoard,
   };
 })();
