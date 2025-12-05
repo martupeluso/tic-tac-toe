@@ -96,7 +96,6 @@ const gameController = (function () {
       column3.push(row[2]);
 
       if (checkForSamePlayerMarks(row)) {
-        console.log(`${currentPlayer.getName()} wins!`);
         winnerFound = true;
       }
 
@@ -110,7 +109,6 @@ const gameController = (function () {
       checkForSamePlayerMarks(column2) ||
       checkForSamePlayerMarks(column3)
     ) {
-      console.log(`${currentPlayer.getName()} wins!`);
       winnerFound = true;
     }
 
@@ -127,13 +125,16 @@ const gameController = (function () {
       checkForSamePlayerMarks(diagonal1) ||
       checkForSamePlayerMarks(diagonal2)
     ) {
-      console.log(`${currentPlayer.getName()} wins!`);
       winnerFound = true;
     }
 
     if (fullRows === 3 && !winnerFound) {
       console.log("It's a tie!");
       tie = true;
+    }
+
+    if (winnerFound) {
+      console.log(`${currentPlayer.getName()} wins!`);
     }
   };
 
