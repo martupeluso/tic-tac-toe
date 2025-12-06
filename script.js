@@ -144,6 +144,7 @@ const gameController = (function () {
     winnerFound = false;
     tie = false;
     gameboard.createNewBoard();
+    displayController.showBoard();
     console.log("Game was restarted");
   };
 
