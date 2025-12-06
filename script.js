@@ -162,14 +162,22 @@ const displayController = (function () {
 
     boardDisplay.textContent = "";
 
-    for (let row of board) {
+    for (let [index, row] of board.entries()) {
       const boardRow = document.createElement("div");
       boardRow.classList.add("boardRow");
 
-      for (let cell of row) {
+      const clickedRow = index;
+
+      for (let [index, cell] of row.entries()) {
+        const clickedColumn = index;
+
         const boardCell = document.createElement("div");
         boardCell.classList.add("boardCell");
         boardCell.textContent = cell;
+
+        boardCell.addEventListener("click", () => {
+          gameController.playRound(clickedRow, clickedColumn);
+        });
 
         boardRow.append(boardCell);
       }
