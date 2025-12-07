@@ -154,6 +154,7 @@ const gameController = (function () {
 
     if (winnerFound) {
       displayController.showGameWinner(currentPlayer.getName());
+      displayController.showRestartButton();
       console.log(`${currentPlayer.getName()} wins!`);
     }
   };
@@ -231,11 +232,21 @@ const displayController = (function () {
     }
   };
 
+  const showRestartButton = () => {
+    const restartButton = document.querySelector(".restart-button");
+    restartButton.style.visibility = "visible";
+    restartButton.addEventListener("click", () => {
+      gameController.restartGame();
+      restartButton.style.visibility = "hidden";
+    });
+  };
+
   showBoard();
 
   return {
     showCurrentTurn,
     showGameWinner,
     showBoard,
+    showRestartButton,
   };
 })();
