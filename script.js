@@ -67,7 +67,7 @@ const gameController = (function () {
 
   const switchPlayerTurn = () => {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
-    if (!winnerFound) {
+    if (!winnerFound && !tie) {
       displayController.showCurrentTurn(
         currentPlayer.getName(),
         currentPlayer.getMarker()
@@ -149,6 +149,8 @@ const gameController = (function () {
 
     if (fullRows === 3 && !winnerFound) {
       console.log("It's a tie!");
+      displayController.showRestartButton();
+      displayController.showTieMessage();
       tie = true;
     }
 
@@ -206,6 +208,10 @@ const displayController = (function () {
     gameInfo.textContent = `${currentPlayerName} wins!`;
   };
 
+  const showTieMessage = () => {
+    gameInfo.textContent = "It's a tie!";
+  };
+
   const showBoard = () => {
     const board = gameboard.getBoard();
     const boardDisplay = document.querySelector(".board");
@@ -250,6 +256,7 @@ const displayController = (function () {
   return {
     showCurrentTurn,
     showGameWinner,
+    showTieMessage,
     showBoard,
     showRestartButton,
   };
