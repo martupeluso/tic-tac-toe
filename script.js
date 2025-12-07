@@ -46,10 +46,17 @@ const Player = function (name, marker) {
 };
 
 const gameController = (function () {
-  const playerOne = Player("playerOne", "X");
-  const playerTwo = Player("playerTwo", "O");
+  let playerOne, playerTwo, currentPlayer;
 
-  let currentPlayer = playerOne;
+  const setPlayerNames = (
+    playerOneName = "Player One",
+    playerTwoName = "Player Two"
+  ) => {
+    playerOne = Player(playerOneName, "X");
+    playerTwo = Player(playerTwoName, "O");
+
+    currentPlayer = playerOne;
+  };
 
   const getCurrentPlayer = () => currentPlayer;
 
@@ -149,6 +156,7 @@ const gameController = (function () {
   };
 
   return {
+    setPlayerNames,
     getCurrentPlayer,
     playRound,
     restartGame,
@@ -156,6 +164,22 @@ const gameController = (function () {
 })();
 
 const displayController = (function () {
+  const modal = document.querySelector(".modal");
+  const startButton = document.querySelector(".modal button");
+
+  modal.showModal();
+
+  startButton.addEventListener("click", () => {
+    const playerOneName =
+      document.getElementById("playerOneName").value || undefined;
+    const playerTwoName =
+      document.getElementById("playerTwoName").value || undefined;
+
+    gameController.setPlayerNames(playerOneName, playerTwoName);
+
+    modal.close();
+  });
+
   const showBoard = () => {
     const board = gameboard.getBoard();
     const boardDisplay = document.querySelector(".board");

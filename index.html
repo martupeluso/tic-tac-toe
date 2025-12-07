@@ -8,6 +8,19 @@
   </head>
   <body>
     <h1>Tic-tac-toe</h1>
+    <dialog class="modal">
+      <div class="modal-header">
+        <h2>Welcome to Tic-Tac-Toe!</h2>
+        <p>Please enter your names below, or press the 'Start Game' button to use default naming.</p>
+      </div>
+      <form>
+        <label for="playerOneName">Player One (X):</label>
+        <input type="text" name="playerOneName" id="playerOneName" placeholder="Player One">
+        <label for="playerTwoName">Player Two (O):</label>
+        <input type="text" name="playerTwoName" id="playerTwoName" placeholder="Player Two">
+      </form>
+      <button type="button">Start Game</button>
+    </dialog>
     <div class="board"></div>
     <script src="script.js"></script>
   </body>
