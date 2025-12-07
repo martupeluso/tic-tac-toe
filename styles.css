@@ -14,7 +14,11 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
+}
+
+h1 + p {
+  margin-bottom: 20px;
 }
 
 .modal[open] {
