@@ -67,10 +67,12 @@ const gameController = (function () {
 
   const switchPlayerTurn = () => {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
-    displayController.showCurrentTurn(
-      currentPlayer.getName(),
-      currentPlayer.getMarker()
-    );
+    if (!winnerFound) {
+      displayController.showCurrentTurn(
+        currentPlayer.getName(),
+        currentPlayer.getMarker()
+      );
+    }
   };
 
   let winnerFound = false;
@@ -151,6 +153,7 @@ const gameController = (function () {
     }
 
     if (winnerFound) {
+      displayController.showGameWinner(currentPlayer.getName());
       console.log(`${currentPlayer.getName()} wins!`);
     }
   };
@@ -175,6 +178,7 @@ const gameController = (function () {
 const displayController = (function () {
   const modal = document.querySelector(".modal");
   const startButton = document.querySelector(".modal button");
+  const gameInfo = document.querySelector(".game-info");
 
   modal.showModal();
 
@@ -190,8 +194,11 @@ const displayController = (function () {
   });
 
   const showCurrentTurn = (currentPlayerName, currentPlayerMarker) => {
-    const turnDisplay = document.querySelector(".currentTurn");
-    turnDisplay.textContent = `${currentPlayerName}'s turn! (${currentPlayerMarker})`;
+    gameInfo.textContent = `${currentPlayerName}'s turn! (${currentPlayerMarker})`;
+  };
+
+  const showGameWinner = (currentPlayerName) => {
+    gameInfo.textContent = `${currentPlayerName} wins!`;
   };
 
   const showBoard = () => {
@@ -228,6 +235,7 @@ const displayController = (function () {
 
   return {
     showCurrentTurn,
+    showGameWinner,
     showBoard,
   };
 })();
