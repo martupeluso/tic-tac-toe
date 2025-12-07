@@ -165,6 +165,10 @@ const gameController = (function () {
     tie = false;
     gameboard.createNewBoard();
     displayController.showBoard();
+    displayController.showCurrentTurn(
+      currentPlayer.getName(),
+      currentPlayer.getMarker()
+    );
     console.log("Game was restarted");
   };
 
