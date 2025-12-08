@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "DK Cool Crayon";
+  src: url("DKCoolCrayon.woff2") format("woff2"),
+    url("DKCoolCrayon.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
