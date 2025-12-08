@@ -10,6 +10,9 @@
 :root {
   --font-stack: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --dark-green: #274c43;
+  --light-green: #bbccbf;
+  --input-bg: #d0e4d4;
 }
 
 * {
