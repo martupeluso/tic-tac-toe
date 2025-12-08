@@ -25,6 +25,7 @@ body {
   justify-content: center;
   align-items: center;
   line-height: 1.5;
+  font-family: "DK Cool Crayon", var(--font-stack);
 }
 
 h1 {
@@ -61,12 +62,14 @@ form input {
 }
 
 form input {
+  font-family: "DK Cool Crayon", var(--font-stack);
   padding: 8px;
 }
 
 button {
   padding: 8px;
   margin-top: 8px;
+  font-family: "DK Cool Crayon", var(--font-stack);
 }
 
 .board {
