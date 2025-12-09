@@ -103,7 +103,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--dark-green);
+  background-color: #1f3d36;
 }
 
 .board {
